@@ -35,7 +35,10 @@
  */
 require __DIR__ . '/../vendor/autoload.php';
 global $argv;
+// $n = number of times to repeat
 $n = isset($argv[1]) ? intval($argv[1]) : 1000;
+// $length = number of characters in url string.
+$length = isset($argv[2]) ? intval($argv[2]) : 20;
 /**
  * Generates a random request url.
  *
@@ -76,7 +79,8 @@ while (count($methods) <= $n) {
 }
 $methods = array_slice($methods, 0, $n);
 $randkeys = array_rand($methods, $n);
-$routes = randomRequestUrl(4, $n);
+shuffle($randkeys);
+$routes = randomRequestUrl($length, $n);
 $router = new AltoRouter\AltoRouter();
 // map 1000 random routes
 $start = microtime(true);
