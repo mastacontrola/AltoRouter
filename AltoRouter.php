@@ -569,9 +569,8 @@ class AltoRouter
                     . $type
                     . ')'
                     . $optional
-                    . ')'
-                    . $optional
-                    . '/?';
+                    . '(/+|))'
+                    . $optional;
                 $route['regex'] = str_replace($block, $pattern, $route['regex']);
             }
         }

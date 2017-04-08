@@ -709,7 +709,8 @@ class AltoRouterTest extends \PHPUnit_Framework_TestCase
             array(
                 'target' => 'bare_action',
                 'params' => array(
-                    'method' => 'GET'
+                    'method' => 'GET',
+                    'page' => ''
                 ),
                 'name' => 'bare_route'
             ),
