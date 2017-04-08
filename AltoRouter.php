@@ -550,7 +550,7 @@ class AltoRouter
                     $pre,
                     $type,
                     $param,
-                    $optional
+                    $optional,
                 ) = $match;
                 unset($match);
                 $optional = ('' !== $optional ? '?' : null);
@@ -562,8 +562,8 @@ class AltoRouter
                     $pre = '\.';
                 }
                 // Older versions of PCRE require the 'P' in (?P<named>)
-                $pattern = '(/+|)(?:'
-                    . ('' !== $pre ? $pre : null)
+                $pattern = '(?:'
+                    . ('' !== $pre ? $pre.'+' : null)
                     . '('
                     . ('' !== $param ? "?P<$param>" : null)
                     . $type
@@ -571,7 +571,7 @@ class AltoRouter
                     . $optional
                     . ')'
                     . $optional
-                    . '(/+|)';
+                    . '/?';
                 $route['regex'] = str_replace($block, $pattern, $route['regex']);
             }
         }
